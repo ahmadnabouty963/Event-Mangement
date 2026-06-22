@@ -1,12 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-
+import backgroundImage from "../images/background.png";
 export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
 function HomePage() {
   return (
-    <section className="space-y-8">
+    <section
+      className="space-y-8 bg-contain bg-center bg-no-repeat min-h-screen"
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
       <div className="rounded-lg border border-base-300 bg-base-100 p-8">
         <p className="text-sm font-semibold uppercase tracking-wide text-base-content/50">
           Professional Event Office
