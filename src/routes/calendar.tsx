@@ -5,7 +5,7 @@ import { useEvents } from "../hooks/useEvents";
 import type { Event } from "../types/event";
 import { formatDate } from "../utils/dateHelpers";
 
-export const Route = createFileRoute("/calender")({
+export const Route = createFileRoute("/calendar")({
   component: CalendarPage,
 });
 

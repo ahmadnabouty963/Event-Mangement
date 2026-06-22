@@ -1,4 +1,11 @@
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/clerk-react";
 
 export const Route = createRootRoute({
   component: RootLayout,
@@ -29,9 +36,29 @@ function RootLayout() {
               </div>
 
               <div className="flex-none">
-                <Link to="/events/new" className="btn btn-primary btn-sm">
-                  Create Event
-                </Link>
+                <div className="flex items-center gap-3">
+                  <SignedOut>
+                    <SignInButton mode="modal">
+                      <button type="button" className="btn btn-ghost btn-sm">
+                        Sign in
+                      </button>
+                    </SignInButton>
+
+                    <SignUpButton mode="modal">
+                      <button type="button" className="btn btn-primary btn-sm">
+                        Sign up
+                      </button>
+                    </SignUpButton>
+                  </SignedOut>
+
+                  <SignedIn>
+                    <Link to="/events/new" className="btn btn-primary btn-sm">
+                      Create Event
+                    </Link>
+
+                    <UserButton />
+                  </SignedIn>
+                </div>
               </div>
             </div>
           </header>
@@ -56,6 +83,7 @@ function RootLayout() {
                 Manage events, attendees and schedules.
               </p>
             </div>
+
             <nav className="space-y-1">
               <Link
                 to="/"
@@ -66,15 +94,18 @@ function RootLayout() {
               >
                 Home
               </Link>
-              <Link
-                to="/dashboard"
-                className="block rounded-md px-3 py-2 text-sm font-medium text-white/70 transition hover:bg-white/10 hover:text-white"
-                activeProps={{
-                  className: "bg-white/10 text-white",
-                }}
-              >
-                Dashboard
-              </Link>
+
+              <SignedIn>
+                <Link
+                  to="/dashboard"
+                  className="block rounded-md px-3 py-2 text-sm font-medium text-white/70 transition hover:bg-white/10 hover:text-white"
+                  activeProps={{
+                    className: "bg-white/10 text-white",
+                  }}
+                >
+                  Dashboard
+                </Link>
+              </SignedIn>
 
               <Link
                 to="/events"
@@ -87,7 +118,7 @@ function RootLayout() {
               </Link>
 
               <Link
-                to="/calender"
+                to="/calendar"
                 className="block rounded-md px-3 py-2 text-sm font-medium text-white/70 transition hover:bg-white/10 hover:text-white"
                 activeProps={{
                   className: "bg-white/10 text-white",
@@ -107,13 +138,28 @@ function RootLayout() {
               </Link>
             </nav>
 
-            <div className="mt-8 rounded-lg border border-white/10 bg-white/5 p-4">
-              <p className="text-sm font-semibold">Project status</p>
+            <div className="mt-8 border-t border-white/10 pt-5">
+              <SignedOut>
+                <div className="space-y-3">
+                  <p className="text-sm text-white/60">
+                    Sign in to access the dashboard.
+                  </p>
 
-              <p className="mt-1 text-sm text-white/60">
-                CRUD features are active. Dashboard, attendees and calender will
-                be improved next.
-              </p>
+                  <SignInButton mode="modal">
+                    <button type="button" className="btn btn-sm w-full">
+                      Sign in
+                    </button>
+                  </SignInButton>
+                </div>
+              </SignedOut>
+
+              <SignedIn>
+                <div className="flex items-center gap-3">
+                  <UserButton />
+
+                  <p className="text-sm text-white/60">Signed in</p>
+                </div>
+              </SignedIn>
             </div>
           </div>
         </aside>
