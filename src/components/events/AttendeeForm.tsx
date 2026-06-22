@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 
 import type { NewAttendeeData } from "../../hooks/useEvents";
-
+// ATTENDEE FROM FÜR HINZUFÜGEN ** ANDERS DENKEN LIEBER **
 type AttendeeFormProps = {
   onSubmit: (attendeeData: NewAttendeeData) => boolean;
 };

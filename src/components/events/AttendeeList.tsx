@@ -1,5 +1,5 @@
 import type { Attendee } from "../../types/event";
-
+// AUCH WIEDER ANDERS DENKEN LIEBER WEIL HIER WIRD NUR DAS GEGENTEIL VON ATTENDEESFORM GEZEIGT
 type AttendeeListProps = {
   attendees: Attendee[];
   onRemoveAttendee: (attendeeId: string) => void;

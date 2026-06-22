@@ -7,7 +7,7 @@ import { useEvents } from "../../hooks/useEvents";
 export const Route = createFileRoute("/events/")({
   component: EventsPage,
 });
-
+// events-liste ** WICHTIG MUSS NOCH WIEDER IN ORDNUNG BRINGEN !!
 function EventsPage() {
   const { events } = useEvents();
 
@@ -129,7 +129,6 @@ function EventsPage() {
 
           <label className="form-control">
             <span className="label-text mb-2">Status</span>
-
             <select
               className="select select-bordered w-full"
               value={status}
@@ -142,10 +141,8 @@ function EventsPage() {
               <option value="completed">Completed</option>
             </select>
           </label>
-
           <label className="form-control">
             <span className="label-text mb-2">Sort by</span>
-
             <select
               className="select select-bordered w-full"
               value={sortBy}
@@ -160,7 +157,6 @@ function EventsPage() {
             </select>
           </label>
         </div>
-
         <div className="mt-5 flex flex-col gap-3 border-t border-base-300 pt-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-base-content/60">
             {filteredEvents.length} event(s) found

@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import StatusBadge from "./StatusBadge";
 import type { Event } from "../../types/event";
 import OccupancyBar from "./OccupancyBar";
-
+//EINMAL FÜR JEDES EVENT ,, ** MUSS NOCH WIEDER SAUBERMACHEN **
 type EventCardProps = {
   event: Event;
 };

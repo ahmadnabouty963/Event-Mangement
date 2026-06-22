@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 
 import type { Event, EventCategory, EventStatus } from "../../types/event";
-
+//ENTWEDER BEARBEITEN ODER NEUE ERSTELLEN
 export type EventFormData = {
   title: string;
   description: string;
