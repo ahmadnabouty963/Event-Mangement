@@ -35,13 +35,11 @@ function EventForm({
     status: initialData?.status ?? "draft",
     maxAttendees: initialData?.maxAttendees ?? 10,
   });
-
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     onSubmit(formData);
   }
-
   return (
     <form
       onSubmit={handleSubmit}
