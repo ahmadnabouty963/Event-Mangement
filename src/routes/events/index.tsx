@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import EventCard from "../../components/events/EventCard";
 import { useEvents } from "../../hooks/useEvents";
@@ -7,7 +7,7 @@ import { useEvents } from "../../hooks/useEvents";
 export const Route = createFileRoute("/events/")({
   component: EventsPage,
 });
-// events-liste ** WICHTIG MUSS NOCH WIEDER IN ORDNUNG BRINGEN !!
+
 function EventsPage() {
   const { events } = useEvents();
 
@@ -16,10 +16,10 @@ function EventsPage() {
   const [status, setStatus] = useState("all");
   const [sortBy, setSortBy] = useState("date-asc");
 
-  const filteredEvents = useMemo(() => {
-    const searchText = search.trim().toLowerCase();
+  const searchText = search.trim().toLowerCase();
 
-    const result = events.filter((event) => {
+  const filteredEvents = events
+    .filter((event) => {
       const matchesSearch =
         event.title.toLowerCase().includes(searchText) ||
         event.description.toLowerCase().includes(searchText) ||
@@ -30,9 +30,8 @@ function EventsPage() {
       const matchesStatus = status === "all" || event.status === status;
 
       return matchesSearch && matchesCategory && matchesStatus;
-    });
-
-    return [...result].sort((a, b) => {
+    })
+    .sort((a, b) => {
       if (sortBy === "date-asc") {
         return a.date.localeCompare(b.date);
       }
@@ -59,7 +58,6 @@ function EventsPage() {
 
       return 0;
     });
-  }, [events, search, category, status, sortBy]);
 
   function resetFilters() {
     setSearch("");
@@ -96,7 +94,6 @@ function EventsPage() {
             Use search, category, status and sorting to find events faster.
           </p>
         </div>
-
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           <label className="form-control">
             <span className="label-text mb-2">Search</span>
@@ -109,7 +106,6 @@ function EventsPage() {
               onChange={(event) => setSearch(event.target.value)}
             />
           </label>
-
           <label className="form-control">
             <span className="label-text mb-2">Category</span>
 
@@ -126,7 +122,6 @@ function EventsPage() {
               <option value="other">Other</option>
             </select>
           </label>
-
           <label className="form-control">
             <span className="label-text mb-2">Status</span>
             <select
@@ -157,6 +152,7 @@ function EventsPage() {
             </select>
           </label>
         </div>
+
         <div className="mt-5 flex flex-col gap-3 border-t border-base-300 pt-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-base-content/60">
             {filteredEvents.length} event(s) found
