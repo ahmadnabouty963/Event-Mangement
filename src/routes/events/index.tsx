@@ -35,27 +35,21 @@ function EventsPage() {
       if (sortBy === "date-asc") {
         return a.date.localeCompare(b.date);
       }
-
       if (sortBy === "date-desc") {
         return b.date.localeCompare(a.date);
       }
-
       if (sortBy === "title-asc") {
         return a.title.localeCompare(b.title);
       }
-
       if (sortBy === "title-desc") {
         return b.title.localeCompare(a.title);
       }
-
       if (sortBy === "attendees-desc") {
         return b.attendees.length - a.attendees.length;
       }
-
       if (sortBy === "attendees-asc") {
         return a.attendees.length - b.attendees.length;
       }
-
       return 0;
     });
 

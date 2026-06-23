@@ -13,7 +13,7 @@ export type EventFormData = {
   status: EventStatus;
   maxAttendees: number;
 };
-
+//VIEL HARDCODING MACH WIEDER NEUE GEDANKEN
 type EventFormProps = {
   initialData?: Event;
   submitButtonText: string;
